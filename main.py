@@ -38,7 +38,7 @@ if not os.path.exists(GOOGLE_CREDS_PATH):
 
 creds = ServiceAccountCredentials.from_json_keyfile_name(GOOGLE_CREDS_PATH, scope)
 client = gspread.authorize(creds)
-sheet = client.open("DTR HAWKS").sheet1
+sheet = client.open("DTR HAWKS INTERN").sheet1
 # --------------------------------
 
 # --- Discord Bot Setup ---
@@ -1055,19 +1055,15 @@ async def help_dtr(ctx):
     is_user_admin = is_admin(ctx.author.id)
 
     help_text = """
-**🕒 DTR HAWKS Bot Commands**
+**Attendance Commands**
 
-━━━━━━━━━━━━━━━━━━
 **Daily Time Recording**
-━━━━━━━━━━━━━━━━━━
 !am_in  - Clock in (morning)
 !am_out - Clock out (lunch break)
 !pm_in  - Clock in (afternoon)
 !pm_out - Clock out (end of day)
 
-━━━━━━━━━━━━━━━━━━
 **Half-Day Options**
-━━━━━━━━━━━━━━━━━━
 !half_day morning
 • Use AFTER you finish morning work
 • Required: AM IN → AM OUT
@@ -1078,15 +1074,11 @@ async def help_dtr(ctx):
 • AM times will be marked as N/A
 • Then clock: PM IN → PM OUT
 
-━━━━━━━━━━━━━━━━━━
 **Info Commands**
-━━━━━━━━━━━━━━━━━━
 !status    - View your DTR for today
 !help_dtr  - Show this help message
 
-━━━━━━━━━━━━━━━━━━
 **Important Notes**
-━━━━━━━━━━━━━━━━━━
 • Only authorized users can use DTR commands
 • Follow the full-day sequence:
   AM IN → AM OUT → PM IN → PM OUT
@@ -1097,9 +1089,8 @@ async def help_dtr(ctx):
 
     if is_user_admin:
         help_text += """
-━━━━━━━━━━━━━━━━━━
+
 **🔐 Admin Commands**
-━━━━━━━━━━━━━━━━━━
 !add_user @user Full Name
 !change_name @user New Name
 !remove_user @user
@@ -1107,16 +1098,12 @@ async def help_dtr(ctx):
 !view_dtr @user
 !manual_entry @user [am_in | am_out | pm_in | pm_out] [time]
 
-━━━━━━━━━━━━━━━━━━
 **Manual Entry Examples**
-━━━━━━━━━━━━━━━━━━
 !manual_entry @john am_in 8:30 AM
 !manual_entry @maria pm_out 5:00 PM
 !manual_entry @pedro am_out 12:00 PM
 
-━━━━━━━━━━━━━━━━━━
 **Admin Use Cases**
-━━━━━━━━━━━━━━━━━━
 • User forgot to clock → add missing time
 • Wrong time recorded → correct entry
 • Fix time sequence issues
@@ -1125,7 +1112,7 @@ async def help_dtr(ctx):
 
 # ---------------- RUN ---------------- #
 if __name__ == "__main__":
-    print(f"Starting DTR HAWKS Bot...")
+    print(f"Starting Attendance Bot...")
     print(f"Timezone: {TIMEZONE}")
     print(f"Google Credentials: {GOOGLE_CREDS_PATH}")
     print(f"Starting Discord bot...")
